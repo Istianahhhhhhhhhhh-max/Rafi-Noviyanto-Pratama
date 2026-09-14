@@ -31,7 +31,7 @@
     <div id="pinScreen" class="pin-screen">
       <h2>FOR YOUR EYES ONLY</h2>
       <h1>Enter Your Secret Code</h1>
-      <input type="password" id="pinInput" class="pin-input" placeholder="****" maxlength="4"><br>
+      <input type="password" id="pinInput" class="pin-input" placeholder="****" maxlength="4">
       <button class="btn" onclick="checkPin()">UNLOCK &#10084;</button>
       <p id="errorMsg" style="color: #ff5252; margin-top: 10px; font-size: 0.8rem;"></p>
     </div>
@@ -75,7 +75,7 @@
   </div>
 
   <script>
-    const CORRECT_PIN = "2011"; // <-- Masukan PIN rahasia kamu disini
+    const CORRECT_PIN = "20112007"; // <-- Masukan PIN rahasia kamu disini
 
     function checkPin() {
       const input = document.getElementById('pinInput').value;
