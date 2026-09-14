@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { background: linear-gradient(135deg, #1f0812 0%, #0d0206 100%); color: #fce4ec; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .container { width: 100%; max-width: 600px; background: rgba(35, 10, 20, 0.85); border: 1px solid rgba(255, 182, 193, 0.2); border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
+    .pin-screen h2 { color: #f8bbd0; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .pin-screen h1 { font-size: 1.6rem; margin-bottom: 20px; }
+    .pin-input { width: 150px; padding: 10px; text-align: center; font-size: 1.2rem; letter-spacing: 5px; border-radius: 8px; border: 1px solid #e91e63; background: rgba(0,0,0,0.4); color: #fff; margin-bottom: 15px; outline: none; }
+    .btn { background: #e91e63; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    .btn:hover { background: #c2185b; }
+    .main-content { display: none; }
+    nav { display: flex; justify-content: space-around; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px; margin-bottom: 20px; }
+    nav a { color: #f8bbd0; text-decoration: none; font-size: 0.85rem; padding: 6px 12px; border-radius: 6px; transition: 0.3s; }
+    nav a.active { background: rgba(233, 30, 99, 0.3); color: #fff; }
+    .section { display: none; animation: fadeIn 0.4s ease-in-out; text-align: left; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .card { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.08); }
+    .photo { width: 100%; border-radius: 8px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Screen 1: Secret Code -->
+    <div id="pinScreen" class="pin-screen">
+      <h2>FOR YOUR EYES ONLY</h2>
+      <h1>Enter Your Secret Code</h1>
+      <input type="password" id="pinInput" class="pin-input" placeholder="****" maxlength="4"><br>
+      <button class="btn" onclick="checkPin()">UNLOCK &#10084;</button>
+      <p id="errorMsg" style="color: #ff5252; margin-top: 10px; font-size: 0.8rem;"></p>
+    </div>
+
+    <!-- Screen 2: Main Content -->
+    <div id="mainContent" class="main-content">
+      <nav>
+        <a href="#" onclick="showTab(event, 'surface')" class="active">Surface</a>
+        <a href="#" onclick="showTab(event, 'memories')">Memories</a>
+        <a href="#" onclick="showTab(event, 'letter')">Letter</a>
+        <a href="#" onclick="showTab(event, 'wishes')">Wishes</a>
+      </nav>
+
+      <div id="surface" class="section active">
+        <h2 style="color: #ff80ab;">Happy Birthday, Favorite Person!</h2>
+        <p style="margin-top: 10px; line-height: 1.6;">Selamat datang di ruang kecil yang dibuat khusus untuk merayakan hari spesialmu. Buka menu di atas ya!</p>
+      </div>
+
+      <div id="memories" class="section">
+        <h3>Chapters From Our Story</h3>
+        <div class="card">
+          <h4>CHAPTER 001 — Where it all started</h4>
+          <p style="font-size: 0.9rem; margin-top: 5px;">Momen pertama kali kita kenal dan mulai banyak cerita.</p>
+        </div>
+      </div>
+
+      <div id="letter" class="section">
+        <h3>Open When Found 🍾</h3>
+        <div class="card" style="font-style: italic; line-height: 1.7;">
+          "Dear you, terima kasih sudah hadir dan bertahan sampai hari ini. Semoga di usia yang baru ini kamu mendapatkan semua hal baik dan kebahagiaan yang layak kamu dapatkan."
+        </div>
+      </div>
+
+      <div id="wishes" class="section">
+        <h3>Wishes for the year ahead</h3>
+        <div class="card">
+          <p>✨ Semoga impian-impian besar yang kamu simpan bisa terwujud satu per satu tahun ini.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CORRECT_PIN = "1234"; // Ganti PIN sesuai keinginan
+
+    function checkPin() {
+      const input = document.getElementById('pinInput').value;
+      if (input === CORRECT_PIN) {
+        document.getElementById('pinScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      } else {
+        document.getElementById('errorMsg').innerText = "Kode salah, coba lagi!";
+      }
+    }
+
+    function showTab(e, id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      e.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
